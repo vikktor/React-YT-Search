@@ -9,7 +9,6 @@ import registerServiceWorker from './registerServiceWorker';
 const API_KEY = 'AIzaSyCTN6Dcp-CIfDElXir5Ix7PP0Wtz4jDw0U';
 
 
-
 class App extends Component {
   constructor (props) {
     super(props)
@@ -19,7 +18,7 @@ class App extends Component {
       selectedVideo: null
     };
 
-    YTSearch ({key: API_KEY, term: 'milo yiannopoulos'}, (videos) => {
+    YTSearch ({key: API_KEY, term: 'test video'}, (videos) => {
       this.setState({
         videos: videos,
         selectedVideo: videos[0]
@@ -32,7 +31,9 @@ class App extends Component {
       <div>
         <Searchbar />
         <VideoDetail video={this.state.selectedVideo}/>
-        <Videolist videos={this.state.videos}/>
+        <Videolist
+        onVideoSelect={selectedVideo => this.setState({selectedVideo})  }
+        videos={this.state.videos}/>
       </div>
     );
   }
